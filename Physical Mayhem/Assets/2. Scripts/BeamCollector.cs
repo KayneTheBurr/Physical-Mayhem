@@ -5,10 +5,11 @@ using TMPro;
 
 public class BeamCollector : MonoBehaviour
 {
+    public UpgradeCenter upgradeLogic;
     public ShipStatus myShip;
     public bool treasureInBeam, gameWin = false;
     public GameObject treasure = null;
-    public int collectedTracker = 0, maxTreasures;
+    public int collectedTracker = 0, maxTreasures, currency;
     public TextMeshProUGUI scoreLabel, winConditionLabel;
 
     public void Start()
@@ -38,8 +39,9 @@ public class BeamCollector : MonoBehaviour
     }
     private void Update()
     {
-        winConditionLabel.text = "Collect " + (maxTreasures - 1) + " to win";
-        scoreLabel.text = "Collected: " + collectedTracker;
+        winConditionLabel.text = "Collected " + collectedTracker + "/" + (maxTreasures - 1) + " to win";
+        scoreLabel.text = "Currency: $" + upgradeLogic.currency + "\nBombs: " + upgradeLogic.bombsHave;
+
         if(treasureInBeam)
         {
             if (Input.GetKey(KeyCode.Space))
@@ -49,6 +51,7 @@ public class BeamCollector : MonoBehaviour
                 {
                     Destroy(treasure);
                     collectedTracker++;
+                    upgradeLogic.currency += 5;
                     if (collectedTracker >= maxTreasures - 1)
                     {
                         gameWin = true;

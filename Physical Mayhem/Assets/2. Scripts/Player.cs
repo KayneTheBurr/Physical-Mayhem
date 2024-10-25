@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    
+    public UpgradeCenter upgradeLogic;
+    public GameObject bombPrefab;
     public InputControls inputController;
     public Rigidbody rb;
-    public float spinSpeed, rotateAngle, moveSpeed, verticalSpeed;
+    public float spinSpeed, forceSpeed, moveSpeed, verticalSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -40,24 +41,13 @@ public class Player : MonoBehaviour
         Vector2 move = inputController.BasicActions.Move.ReadValue<Vector2>();
         Vector3 moveMode = new Vector3(move.x, 0, move.y);
         transform.Translate(moveMode * Time.fixedDeltaTime * moveSpeed, Space.World);
-
-        //if(Input.GetKey(KeyCode.Q))
-        //{
-        //    if(this.transform.position.y > 5)
-        //    {
-                
-        //        this.gameObject.transform.Translate(Vector3.down * verticalSpeed * Time.fixedDeltaTime, Space.World);
-        //    }
-            
-        //}
-        //if (Input.GetKey(KeyCode.Q))
-        //{
-        //    if(this.transform.position.y <= 20)
-        //    {
-        //        this.gameObject.transform.Translate(Vector3.up * verticalSpeed * Time.fixedDeltaTime, Space.World);
-        //    }
-            
-        //}
+        
+        if(Input.GetKeyDown(KeyCode.LeftShift) && upgradeLogic.bombsHave > 0)
+        {
+            Debug.Log("make bomb");
+            Instantiate(bombPrefab, new Vector3(transform.position.x, transform.position.y+3, transform.position.z), Quaternion.identity);
+            upgradeLogic.bombsHave--;
+        }
 
     }
 }

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BlockMaterial { Brick, Stone, Steel, Titanium}
 public class WallConnectionSetter : MonoBehaviour
 {
     public HingeJoint hingeUp, hingeDown, hingeLeft, hingeRight, hingeForward, hingeBack;
     //public List<HingeJoint> hingeList = new List<HingeJoint>();
     public float rayLength, breakForce, breakTorque;
-    public bool doesDamage = true;
-
+    public bool doesDamage = true, rubbleAlready = false;
+    public BlockMaterial myMaterialType;
     
     void Awake()
     {
@@ -45,15 +46,25 @@ public class WallConnectionSetter : MonoBehaviour
     {
         if (this.transform.position.y <= -10)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         if (hingeBack == null && hingeDown == null && hingeForward == null
             && hingeLeft == null && hingeRight == null && hingeUp == null)
         {
             doesDamage = false;
+            if(!rubbleAlready)
+            {
+                JustRubble();
+            }
+            
         }
     }
-
+    void JustRubble()
+    {
+        rubbleAlready = true;
+        this.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(1, 1, 1), ForceMode.Impulse);
+        //Destroy(this.gameObject);
+    }
 
 }
   

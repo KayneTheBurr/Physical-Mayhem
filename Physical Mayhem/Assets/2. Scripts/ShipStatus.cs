@@ -6,15 +6,19 @@ using TMPro;
 public class ShipStatus : MonoBehaviour
 {
     public int shipHealth = 5;
+    public int ballMass;
     public bool vulnerable = true;
     public TextMeshProUGUI healthLabel;
     public GameObject winScreen, loseScreen;
     public BeamCollector beamLogic;
+    public Rigidbody wreckingBallRB;
+
 
     // Start is called before the first frame update
     void Start()
     {
         beamLogic = FindObjectOfType<BeamCollector>();
+        wreckingBallRB.mass = ballMass;
     }
 
     // Update is called once per frame
@@ -30,7 +34,22 @@ public class ShipStatus : MonoBehaviour
         {
             if (vulnerable)
             {
-                shipHealth--;
+                switch (col.gameObject.GetComponent<WallConnectionSetter>().myMaterialType)
+                {
+                    case BlockMaterial.Brick:
+                        shipHealth--;
+                        break;
+                    case BlockMaterial.Stone:
+                        shipHealth -= 2;
+                        break;
+                    case BlockMaterial.Steel:
+                        shipHealth -= 3;
+                        break;
+                    case BlockMaterial.Titanium:
+                        shipHealth -= 5;
+                        break;
+                }
+                
                 if (shipHealth <= 0) ShipDeath();
                 vulnerable = false;
                 Invoke(nameof(Shielded), 0.5f);

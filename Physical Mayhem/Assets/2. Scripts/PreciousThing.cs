@@ -17,7 +17,7 @@ public class PreciousThing : MonoBehaviour
         //destroy the treasure if it falls off the map 
         if (this.transform.position.y <= -10)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
             
     }
