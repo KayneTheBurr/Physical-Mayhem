@@ -11,6 +11,7 @@ public class UpgradeCenter : MonoBehaviour
     public Player shipController;
     public BeamCollector beamLogic;
     public int currency, bombsHave;
+    public AudioSource sfxBuy;
 
 
     private void OnEnable()
@@ -34,6 +35,7 @@ public class UpgradeCenter : MonoBehaviour
         {
             massUp.interactable = true;
             speedUp.interactable = true;
+            BOMB.interactable = false;
         }
         else if(currency >= 10)
         {
@@ -56,17 +58,19 @@ public class UpgradeCenter : MonoBehaviour
     private void IncreaseMass()
     {
         currency -= 5;
-        shipInfo.GetComponent<Rigidbody>().mass += 10;
+        shipInfo.wreckingBallRB.mass += 3;
+        sfxBuy.Play();
     }
     void IncreaseSpeed()
     {
         currency -= 5;
-        shipController.moveSpeed += 2;
+        shipController.moveSpeed += 3;
+        sfxBuy.Play();
     }
     void MakeBomb()
     {
         currency -= 10;
         bombsHave++;
-
+        sfxBuy.Play();
     }
 }

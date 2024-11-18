@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRend: {fileID: 6599625666183493194}
   explosionRadius: 10
-  explosionStrength: 500
+  explosionStrength: 1000
   upForce: 0
   bombDelay: 1.5
   dropForce: 25
@@ -112,6 +112,7 @@ MonoBehaviour:
   redGlow: {fileID: 2100000, guid: 42db94513b0a59a42803147095a32b3e, type: 2}
   redMid: {fileID: 2100000, guid: 6e0f7ecd3bc6b55458ee826757d51382, type: 2}
   RedDim: {fileID: 2100000, guid: 8ddd3be935841194cbc41db396683244, type: 2}
+  vfx: {fileID: 3036165738852076204, guid: a562748c28cf8f043b33e95f3cf0f722, type: 3}
 --- !u!33 &3937976569617578138
 MeshFilter:
   m_ObjectHideFlags: 0

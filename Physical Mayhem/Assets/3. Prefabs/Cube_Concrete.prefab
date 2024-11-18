@@ -54,6 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efb4430ee078b140be68b48053d5b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dullBrick: {fileID: 0}
+  dullStone: {fileID: 2100000, guid: 5b5e936d75e14a74f99a75e7832e2b64, type: 2}
+  dullSteel: {fileID: 0}
+  dullTitanium: {fileID: 0}
   hingeUp: {fileID: 5373903196984057507}
   hingeDown: {fileID: 4109280533664192638}
   hingeLeft: {fileID: 5674055583309767439}

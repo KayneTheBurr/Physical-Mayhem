@@ -2,18 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
+
+
+using UnityEngine.Rendering;
+using System.Drawing;
+using UnityEngine.Rendering.Universal;
+using Color = UnityEngine.Color;
+
+
 
 public class ShipStatus : MonoBehaviour
 {
+    public CinemachineVirtualCamera vCam;
+    public CinemachineBasicMultiChannelPerlin shakerTech;
     public int shipHealth = 5;
     public int ballMass;
     public bool vulnerable = true;
+    public float shakeStrength;
     public TextMeshProUGUI healthLabel;
     public GameObject winScreen, loseScreen;
     public BeamCollector beamLogic;
     public Rigidbody wreckingBallRB;
+    public Volume volume, volumeDamaged;
+    public Color vinBlack, vinRed;
+    public GameObject redFlash;
 
+    public void ShakeCamera(float intensity)
+    {
+        //volume.GetComponent<Vignette>().color.value = vinRed;
+        //CinemachineBasicMultiChannelPerlin cineShaker = vCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
 
+        //cineShaker.m_AmplitudeGain = intensity;
+        redFlash.SetActive(true);
+        Invoke(nameof(StopShakeCamera), 0.25f);
+    }
+    public void StopShakeCamera()
+    {
+        redFlash.SetActive(false);
+        //volume.GetComponent<Vignette>().color.value = vinBlack;
+        //CinemachineBasicMultiChannelPerlin cineShaker = vCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        //cineShaker.m_AmplitudeGain  = 0;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -40,16 +70,16 @@ public class ShipStatus : MonoBehaviour
                         shipHealth--;
                         break;
                     case BlockMaterial.Stone:
-                        shipHealth -= 2;
+                        shipHealth -= 1;
                         break;
                     case BlockMaterial.Steel:
-                        shipHealth -= 3;
+                        shipHealth -= 2;
                         break;
                     case BlockMaterial.Titanium:
                         shipHealth -= 5;
                         break;
                 }
-                
+                ShakeCamera(shakeStrength);
                 if (shipHealth <= 0) ShipDeath();
                 vulnerable = false;
                 Invoke(nameof(Shielded), 0.5f);

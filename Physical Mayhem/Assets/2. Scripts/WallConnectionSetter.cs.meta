@@ -3,7 +3,17 @@ guid: 5efb4430ee078b140be68b48053d5b6e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dullBrick: {fileID: 2100000, guid: e5b6c9b981e437249a060cd7b32533dc, type: 2}
+  - dullStone: {fileID: 2100000, guid: 5b5e936d75e14a74f99a75e7832e2b64, type: 2}
+  - dullSteel: {fileID: 2100000, guid: 2c0fdc7dc9f9bf44697bd205a1f5ade4, type: 2}
+  - dullTitanium: {fileID: 2100000, guid: 7c94029d12e0c48408a18c6945c095bd, type: 2}
+  - hingeUp: {instanceID: 0}
+  - hingeDown: {instanceID: 0}
+  - hingeLeft: {instanceID: 0}
+  - hingeRight: {instanceID: 0}
+  - hingeForward: {instanceID: 0}
+  - hingeBack: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

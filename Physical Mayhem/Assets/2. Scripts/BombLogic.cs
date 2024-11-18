@@ -9,10 +9,11 @@ public class BombLogic : MonoBehaviour
     public float explosionRadius, explosionStrength, upForce, bombDelay, dropForce;
     public List<Rigidbody> myExplodeList;
     public Material redGlow, redMid, RedDim;
+    public ParticleSystem vfx;
 
     public void OnTriggerEnter(Collider col)
     {
-        if(col.GetComponent<Rigidbody>() && !col.GetComponent<BombLogic>())
+        if(col.GetComponent<Rigidbody>() && !col.GetComponent<BombLogic>() && !col.GetComponent<PreciousThing>())
         {
             myExplodeList.Add(col.GetComponent<Rigidbody>());
         }
@@ -41,9 +42,11 @@ public class BombLogic : MonoBehaviour
         foreach(Rigidbody rb in myExplodeList)
         {
             rb.AddExplosionForce(explosionStrength, transform.position, explosionRadius, upForce, ForceMode.Impulse);
-            Invoke(nameof(Death), 0.25f);
+            
         }
-        
+        Instantiate(vfx, this.transform.position, Quaternion.identity);
+        Invoke(nameof(Death), 0.15f);
+
     }
     public void ColorBrighten1()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public enum BlockMaterial { Brick, Stone, Steel, Titanium}
 public class WallConnectionSetter : MonoBehaviour
 {
+    public Material dullBrick, dullStone, dullSteel, dullTitanium;
     public HingeJoint hingeUp, hingeDown, hingeLeft, hingeRight, hingeForward, hingeBack;
     //public List<HingeJoint> hingeList = new List<HingeJoint>();
     public float rayLength, breakForce, breakTorque;
@@ -62,7 +63,24 @@ public class WallConnectionSetter : MonoBehaviour
     void JustRubble()
     {
         rubbleAlready = true;
+        switch(myMaterialType)
+        {
+            case BlockMaterial.Brick:
+                GetComponent<MeshRenderer>().material = dullBrick;
+                break;
+            case BlockMaterial.Stone:
+                GetComponent<MeshRenderer>().material = dullStone;
+                break;
+            case BlockMaterial.Steel:
+                GetComponent<MeshRenderer>().material = dullSteel;
+                break;
+            case BlockMaterial.Titanium:
+                GetComponent<MeshRenderer>().material = dullTitanium;
+                break;
+            
+        }
         this.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(1, 1, 1), ForceMode.Impulse);
+
         //Destroy(this.gameObject);
     }
 

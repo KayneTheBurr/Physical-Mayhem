@@ -54,6 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efb4430ee078b140be68b48053d5b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dullBrick: {fileID: 2100000, guid: e5b6c9b981e437249a060cd7b32533dc, type: 2}
+  dullStone: {fileID: 0}
+  dullSteel: {fileID: 0}
+  dullTitanium: {fileID: 0}
   hingeUp: {fileID: 5373903196984057507}
   hingeDown: {fileID: 4109280533664192638}
   hingeLeft: {fileID: 5674055583309767439}
@@ -64,6 +68,8 @@ MonoBehaviour:
   breakForce: 1000
   breakTorque: 1000
   doesDamage: 1
+  rubbleAlready: 0
+  myMaterialType: 0
 --- !u!33 &1415896229744530868
 MeshFilter:
   m_ObjectHideFlags: 0

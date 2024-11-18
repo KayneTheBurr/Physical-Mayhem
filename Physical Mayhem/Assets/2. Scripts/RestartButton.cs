@@ -20,7 +20,7 @@ public class RestartButton : MonoBehaviour
         if (buttonPressed == restartButton)
         {
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Mayhem_Level_01");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("0");
         }
     }
 }

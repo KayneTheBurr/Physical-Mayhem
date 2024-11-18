@@ -11,11 +11,12 @@ public class BeamCollector : MonoBehaviour
     public GameObject treasure = null;
     public int collectedTracker = 0, maxTreasures, currency;
     public TextMeshProUGUI scoreLabel, winConditionLabel;
+    public PreciousThing[] treasureList;
 
     public void Start()
     {
         myShip = FindObjectOfType<ShipStatus>();
-        PreciousThing[] treasureList = FindObjectsOfType<PreciousThing>();
+        treasureList = FindObjectsOfType<PreciousThing>();
         maxTreasures = treasureList.Length;
 
     }
@@ -44,7 +45,7 @@ public class BeamCollector : MonoBehaviour
 
         if(treasureInBeam)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0))
             {
                 treasureInBeam = false;
                 if(treasure != null)
